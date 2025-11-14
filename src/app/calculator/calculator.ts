@@ -71,9 +71,29 @@ export class CalculatorComponent {
   }
 
   evalOperation(param: string = "") {
-    if(param) {
-      this.typeError("ERR: Not aviable currently!", this.ERRORS_SPEED);
-      this.isError = true;
+    if(param === 'f') {
+      try {
+        const num = evaluate(this.display.trim());
+  
+        if(num < 0){
+          this.typeError("Invalid: √ negative", this.ERRORS_SPEED);
+          this.isError = true;
+          return;
+        }
+  
+        const result = Math.sqrt(num);
+  
+        this.expressionMemory = `√(${this.display})`;
+        this.display = result.toString();
+        this.isError = false;
+        this.justEvaluated = true;
+        return;
+  
+      } catch (err) {
+        this.typeError("Invalid operation", this.ERRORS_SPEED);
+        this.isError = true;
+        return;
+      }
     } else {
       try {
         const result = evaluate(this.display.trim());
