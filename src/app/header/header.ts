@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './header.css',
 })
 export class Header {
-  mainPageLink = "https://yarosprojects.vercel.app/es-ES/";
+  mainPageLink = "https://yarosprojects.dev";
 }
